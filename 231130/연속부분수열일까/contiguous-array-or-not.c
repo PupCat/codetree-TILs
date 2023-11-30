@@ -40,6 +40,7 @@ void continuous_sequence(int *a1, int *a2, int n1, int n2){
         }
         else{
             printf("Yes");
+            break;
         }
     }
     
