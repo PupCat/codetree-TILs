@@ -1,40 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 int i;
-void input(int *nums, int n);
-int fun(int *x, int *y, int n, int m);
+int input(int *arr, int n);
+void continuous_sequence(int *a1, int *a2, int n1, int n2);
 int main() {
-    int n1, n2, sw;
-    int *nums1 = NULL; 
-    int *nums2 = NULL;
-    scanf("%d %d", &n1, &n2);                 
-    nums1 = (int*)malloc(sizeof(int)*n1);
-    nums2 = (int*)malloc(sizeof(int)*n2);
-    input(nums1, n1);
-    input(nums2, n2);
+    int  n1,  n2;
+    int *a1, *a2;
+//------malloc-------//
+    scanf("%d %d", &n1, &n2);
+    a1 = (int*)malloc(sizeof(int)*n1);
+    a2 = (int*)malloc(sizeof(int)*n2);
+/*-------INPUT-------*/
+    input(a1, n1);
+    input(a2, n2);
+/*-------OUTPUT------*/
 
-    sw = fun(nums1, nums2, n1, n2);
-    if(sw==1) printf("Yes\n");
-    else printf("No\n");
-    free(nums1);
-    free(nums2);
+    continuous_sequence(a1, a2, n1, n2);
+    
+    free(a1);
+    free(a2);
     return 0;
 }
-void input(int *nums, int n){
-    for(i = 0; i < n; i++) scanf("%d", &nums[i]);
+int input(int *arr, int n){
+    for(i = 0; i < n; i++) scanf("%d", &arr[i]);
 }
-int fun(int *x, int *y, int n, int m){
-    int start;
-    for(i = 0; i < n; i++){
-        if(x[i] == y[0]){
-            start =i;
+void continuous_sequence(int *a1, int *a2, int n1, int n2){
+    int start, stop = 0;
+
+    for(i = 0; i < n1; i++){
+        if(a1[i] == a2[0]){
+            start = i;
             break;
         }
     }
-    if(n - start == m-1) return 0;
-    for(i=start+1; i < n; i++){
-        int k=0;
-        if(x[i]!=y[start+k++]) return 0;
+    for(i = start; i < n2; i++){
+        if(a1[i] != a2[i]){
+            printf("No");
+            break;
+        }
+        else{
+            printf("Yes");
+        }
     }
-    return 1;
+    
+
 }
