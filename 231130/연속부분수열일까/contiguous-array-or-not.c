@@ -1,53 +1,51 @@
 #include <stdio.h>
-#include <stdlib.h>
-int i;
-int input(int *arr, int n);
-void continuous_sequence(int *a1, int *a2, int n1, int n2);
+
 int main() {
-    int  n1,  n2;
-    int *a1, *a2;
-//------malloc-------//
-    scanf("%d %d", &n1, &n2);
-    a1 = (int*)malloc(sizeof(int)*n1);
-    a2 = (int*)malloc(sizeof(int)*n2);
-/*-------INPUT-------*/
-    input(a1, n1);
-    input(a2, n2);
-/*-------OUTPUT------*/
-
-    continuous_sequence(a1, a2, n1, n2);
-    
-    free(a1);
-    free(a2);
+    // 정수 n1과 n2를 입력받습니다.
+	int n1, n2;
+	scanf("%d %d", &n1, &n2);
+	int arr1[100];
+	int arr2[100];
+	
+	// arr1을 입력받습니다.
+	for(int i = 0; i < n1; i++)
+		scanf("%d", &arr1[i]);
+	
+	// arr2를 입력받습니다.
+	for(int i = 0; i < n2; i++)
+		scanf("%d", &arr2[i]);
+	
+	// arr2이 arr1의 연속부분수열인지 확인합니다.
+	for(int i = 0; i < n1; i++) {
+		// arr1의 i번 index부터의 수열이 arr2와 완전히 일치하는지 확인합니다.
+		// 즉, arr1[i] == arr2[0], arr1[i+1] == arr2[1]...이 성립하는지 확인합니다.
+		// success : arr1의 i번 index부터의 수열이 arr2와 완전히 일치할때만 true, 그 외 false
+		bool success = true;
+		
+		for(int j = 0; j < n2; j++) {
+			// arr1의 index가 범위 밖으로 벗어날때
+			if(i + j >= n1) {
+				success = false;
+				break;
+			}
+			
+			// arr1과 arr2가 일치하지 않을때
+			if(arr1[i + j] != arr2[j]) {
+				success = false;
+				break;
+			}
+		}
+		
+		// 완전히 일치할 경우, arr2는 arr1의 연속부분수열이 맞습니다.
+		// 구현의 편의를 위해 return 0으로 프로그램을 강제 종료하였습니다.
+		if(success) {
+			printf("Yes");
+			return 0;
+		}
+	}
+	
+	// 완전히 일치하는 경우가 하나도 없을 경우, arr2는 arr1의 연속부분수열이 아닙니다.
+	printf("No");
+	
     return 0;
-}
-int input(int *arr, int n){
-    for(i = 0; i < n; i++) scanf("%d", &arr[i]);
-}
-void continuous_sequence(int *a1, int *a2, int n1, int n2){
-    int start, stop = 0;
-
-    for(i = 0; i < n1; i++){
-        if(a1[i] == a2[0]){
-            start = i;
-            break;
-        }
-    }
-    for(i = start; i < n1; i++){
-        if(a1[i] == a2[i-start]){
-                stop = 0;
-                if(n2 < i)
-                    break;
-        }
-        else{
-            stop = 1;
-            break;
-        }
-    }
-    if(stop == 0){
-        printf("Yes");
-    }
-    else
-        printf("No");
-
 }
