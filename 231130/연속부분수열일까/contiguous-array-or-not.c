@@ -33,9 +33,10 @@ void continuous_sequence(int *a1, int *a2, int n1, int n2){
             break;
         }
     }
-    for(i = start-1; i < n2; i++){
-        if(a1[i] != a2[i]){
+    for(i = start; i < n2; i++){
+        if(a1[i] != a2[i-start]){
             printf("No");
+            
             break;
         }
         else{
