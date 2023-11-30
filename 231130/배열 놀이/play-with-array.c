@@ -23,20 +23,24 @@ int main() {
 }
 void proc(int a, int b, int c, int *p){
     int i;
-    if(a==1){
-        printf("%d\n", p[b-1]);}
-    else if(a==2){
+    switch(a)
+    {
+        case 1:
+        printf("%d\n", p[b-1]);
+            break;
+        case 2:
         for(i = 0; i < n; i++){
             if(p[i] == b){
                 printf("%d\n", i+1);
                 return;}
             }
-        printf("0\n");
+            printf("0\n");
+            break;
+        case 3:
+            for(i = b; i <= c; i++){
+                printf("%d ", p[i-1]);
+            }
+            printf("\n");
+            break;
     }
-    else{
-        for(i = b; i <= c; i++){
-            printf("%d ", p[i-1]);}
-        printf("\n");
-    }
-
 }
