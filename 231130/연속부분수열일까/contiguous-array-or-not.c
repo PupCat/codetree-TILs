@@ -20,8 +20,9 @@ int input(int *arr, int n){
      for(i = 0; i < n; i++) scanf("%d", &arr[i]);
  }
 void continuous_sequence(int *arr1, int *arr2, int n1, int n2){
+int success = 1;
 for(int i = 0; i < n1; i++) {
-		int success = 1;
+		
 		
 		for(int j = 0; j < n2; j++) {
 			if(i + j >= n1) {
@@ -37,10 +38,12 @@ for(int i = 0; i < n1; i++) {
 		
 		if(success == 1) {
 			printf("Yes");
-			return 0;
+            break;
 		}
 	}
+	if(success == 0){
+        printf("No");
+    }
 	
-	printf("No");
 	
 }
