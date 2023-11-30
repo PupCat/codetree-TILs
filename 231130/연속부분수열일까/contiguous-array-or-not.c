@@ -25,7 +25,7 @@ int input(int *arr, int n){
     for(i = 0; i < n; i++) scanf("%d", &arr[i]);
 }
 void continuous_sequence(int *a1, int *a2, int n1, int n2){
-    int start, stop = 0;
+    int start;
 
     for(i = 0; i < n1; i++){
         if(a1[i] == a2[0]){
@@ -33,7 +33,7 @@ void continuous_sequence(int *a1, int *a2, int n1, int n2){
             break;
         }
     }
-    for(i = start; i < n2; i++){
+    for(i = start-1; i < n2; i++){
         if(a1[i] != a2[i]){
             printf("No");
             break;
